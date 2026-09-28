@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.2.2";
+    const VERSION = "0.3.0";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -58,7 +58,7 @@ class YellowCloudforms {
 
     // Return the form of a share, from the cache of this server if it is fresh enough
     public function getForm($url) {
-        $fileName = $this->yellow->system->get("coreExtensionDirectory")."cloudforms-".
+        $fileName = $this->yellow->system->get("coreCacheDirectory")."cloudforms-".
             substru(md5($url), 0, 8).".cache";
         $cacheTime = intval($this->yellow->system->get("cloudformsCacheTime"));
         if (is_file($fileName) && filemtime($fileName)+$cacheTime>time()) {
@@ -70,7 +70,7 @@ class YellowCloudforms {
         if ($fileData===false || strposu($fileData, "initial-state-forms-form")===false) {
             return is_file($fileName) ? $this->getFormData($this->yellow->toolbox->readFile($fileName)) : null;
         }
-        $this->yellow->toolbox->writeFile($fileName, $fileData);
+        $this->yellow->toolbox->writeFile($fileName, $fileData, true);
         return $this->getFormData($fileData);
     }
 

@@ -1,4 +1,4 @@
-# Cloudforms 0.2.2
+# Cloudforms 0.3.0
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -20,7 +20,7 @@ Share a form in Nextcloud Forms, "Copy link", and paste it into a page:
 form of the website with `[form]` alone. The share must be open for everybody with the link and it
 must accept answers without a login.
 
-The extension reads the page of the share, which carries the questions, and keeps a copy for
+The extension reads the page of the share, which carries the questions, and keeps a copy in `system/cache` for
 `CloudformsCacheTime` seconds, an hour by default. A visit does not wait for the cloud, and a cloud
 that cannot be reached falls back to the last copy.
 

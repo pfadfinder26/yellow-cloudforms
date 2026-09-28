@@ -1,4 +1,4 @@
-# Cloudforms 0.2.2
+# Cloudforms 0.3.0
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -20,7 +20,7 @@ Ein Formular in Nextcloud Forms teilen, „Link kopieren“, und in eine Seite s
 also mit `[form]` allein nach dem Formular der Website fragen. Der Link muss für alle offen sein
 und Antworten ohne Anmeldung annehmen.
 
-Die Erweiterung liest die Seite des Links, die die Fragen enthält, und legt eine Kopie für
+Die Erweiterung liest die Seite des Links, die die Fragen enthält, und legt eine Kopie in `system/cache` für
 `CloudformsCacheTime` Sekunden ab, eine Stunde als Vorgabe. Ein Besuch wartet nicht auf die Cloud,
 und ist die Cloud nicht erreichbar, gilt die letzte Kopie.
 
