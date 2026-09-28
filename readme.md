@@ -1,4 +1,4 @@
-# Cloudforms 0.1.3
+# Cloudforms 0.1.4
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -40,7 +40,7 @@ field, a phone number a phone field, an expression of its own the pattern of the
 browser says what is wrong before anything is sent. A question that carries a name for filling in
 by itself passes that on as well. Anything else becomes a
 line of text. A file upload is not offered, a form with one is better opened in the cloud, the link
-below the form does that.
+beside the button that sends the form does that.
 
 **Labels:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
 `CloudformsLabelRequired` and `CloudformsLabelOpen` say what the form says, in the language of the

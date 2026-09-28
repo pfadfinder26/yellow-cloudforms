@@ -1,4 +1,4 @@
-# Cloudforms 0.1.3
+# Cloudforms 0.1.4
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -40,7 +40,7 @@ aus einer Zahl ein Zahlenfeld, aus einer Telefonnummer ein Telefonfeld, aus eine
 das Muster des Feldes, der Browser sagt also vorher, was nicht stimmt. Trägt eine Frage einen Namen
 zum automatischen Ausfüllen, wird auch der weitergegeben. Alles
 andere wird eine Zeile Text. Ein Datei-Upload wird nicht angeboten, ein Formular damit öffnet man
-besser in der Cloud, der Link unter dem Formular tut das.
+besser in der Cloud, der Link neben dem Knopf zum Abschicken tut das.
 
 **Beschriftungen:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
 `CloudformsLabelRequired` und `CloudformsLabelOpen` sagen, was das Formular sagt, in der Sprache

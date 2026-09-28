@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.1.3";
+    const VERSION = "0.1.4";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -167,14 +167,22 @@ class YellowCloudforms {
                 $output .= "<h3>".htmlspecialchars($form["title"])."</h3>\n";
             }
             foreach ($form["questions"] as $question) $output .= $this->getQuestionHtml($question);
+            // the way to the form in the cloud stands beside the button that sends this one
             $output .= "<p class=\"cloudform-submit\"><button type=\"submit\">".
-                htmlspecialchars($this->yellow->system->get("cloudformsLabelSubmit"))."</button></p>\n";
+                htmlspecialchars($this->yellow->system->get("cloudformsLabelSubmit"))."</button>".
+                $this->getLinkHtml($hash)."</p>\n";
             $output .= "</form>\n";
+        } else {
+            $output .= "<p class=\"cloudform-link-alone\">".$this->getLinkHtml($hash)."</p>\n";
         }
-        $output .= "<p class=\"cloudform-link\"><a href=\"".htmlspecialchars($this->getFormUrl($hash))."\">".
-            htmlspecialchars($this->yellow->system->get("cloudformsLabelOpen"))."</a></p>\n";
         $output .= "</div>\n";
         return $output;
+    }
+
+    // Return the link that opens the form in the cloud
+    public function getLinkHtml($hash) {
+        return "<a class=\"cloudform-link\" href=\"".htmlspecialchars($this->getFormUrl($hash))."\">".
+            htmlspecialchars($this->yellow->system->get("cloudformsLabelOpen"))."</a>";
     }
 
     // Return one question as its fields
