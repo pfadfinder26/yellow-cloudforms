@@ -26,8 +26,9 @@ that cannot be reached falls back to the last copy.
 
 **Sending:** the form posts to your own web server, which sends the answers to the cloud. It works
 without JavaScript. A request from another website is refused, and a field that people do not see
-catches the simplest robots. The answer of the cloud decides what the page says afterwards, the
-page is shown again with `cloudform:done` or `cloudform:failed` in the location.
+catches the simplest robots. Afterwards the page it was sent from is shown again, at the same
+address as before: what the cloud answered travels in a cookie that lives a minute and is cleared
+when the page says it.
 
 **Questions:** short and long text, a date, a time, a date with time, a choice from a list, several
 choices and one choice out of several become the fields you would expect. Anything else becomes a

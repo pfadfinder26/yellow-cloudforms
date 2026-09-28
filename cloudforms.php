@@ -29,7 +29,9 @@ class YellowCloudforms {
         }
         $form = $this->getForm($this->getFormUrl($hash));
         $status = is_null($form) ? "failed" : $this->sendAnswers($form, $hash);
-        $location = $this->yellow->lookup->normaliseUrl($scheme, $address, $base, $location)."?cloudform=$status";
+        // the answer comes back on the page it was sent from, the result in a short lived cookie
+        setcookie("cloudform", $status, time()+60, "$base/", "", $scheme=="https", true);
+        $location = $this->yellow->lookup->normaliseUrl($scheme, $address, $base, $location);
         return $this->yellow->sendStatus(303, $location);
     }
 
@@ -143,7 +145,12 @@ class YellowCloudforms {
 
     // Return form HTML, the questions of the cloud as fields of this website
     public function getFormHtml($page, $form, $hash) {
-        $status = $page->getRequest("cloudform");
+        $status = $this->yellow->toolbox->getCookie("cloudform");
+        if ($status=="done" || $status=="failed") {
+            $page->setHeader("Set-Cookie", "cloudform=; Max-Age=0; Path=".
+                $this->yellow->system->get("coreServerBase")."/");
+            $page->setHeader("Cache-Control", "no-store");
+        }
         $output = "<div class=\"cloudform\">\n";
         if ($status=="done" || $status=="failed") {
             $output .= "<p class=\"cloudform-status cloudform-".htmlspecialchars($status)."\">".

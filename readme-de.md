@@ -26,8 +26,9 @@ und ist die Cloud nicht erreichbar, gilt die letzte Kopie.
 
 **Abschicken:** das Formular geht an den eigenen Webserver, der die Antwort in die Cloud schickt.
 Das kommt ohne JavaScript aus. Eine Anfrage von einer anderen Website wird abgelehnt, und ein Feld,
-das niemand sieht, fängt die einfachsten Robots ab. Was die Cloud antwortet, entscheidet, was die
-Seite danach sagt, sie wird mit `cloudform:done` oder `cloudform:failed` im Ort erneut gezeigt.
+das niemand sieht, fängt die einfachsten Robots ab. Danach wird die Seite erneut gezeigt, von der es kam,
+unter derselben Adresse wie vorher: was die Cloud geantwortet hat, reist in einem Cookie, das eine
+Minute lebt und gelöscht wird, sobald die Seite es gesagt hat.
 
 **Fragen:** kurzer und langer Text, Datum, Uhrzeit, Datum mit Uhrzeit, Auswahl aus einer Liste,
 mehrere Antworten und eine Antwort aus mehreren werden zu den Feldern, die man erwartet. Alles
