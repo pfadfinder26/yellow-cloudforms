@@ -1,4 +1,4 @@
-# Cloudforms 0.1.1
+# Cloudforms 0.1.2
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -31,7 +31,11 @@ address as before: what the cloud answered travels in a cookie that lives a minu
 when the page says it.
 
 **Questions:** short and long text, a date, a time, a date with time, a choice from a list, several
-choices and one choice out of several become the fields you would expect. Anything else becomes a
+choices and one choice out of several become the fields you would expect. What a short answer is
+checked for in the cloud is carried along: an address becomes an email field, a number a number
+field, a phone number a phone field, an expression of its own the pattern of the field, so the
+browser says what is wrong before anything is sent. A question that carries a name for filling in
+by itself passes that on as well. Anything else becomes a
 line of text. A file upload is not offered, a form with one is better opened in the cloud, the link
 below the form does that.
 

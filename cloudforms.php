@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.1.1";
+    const VERSION = "0.1.2";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -228,9 +228,50 @@ class YellowCloudforms {
                 $output .= "</span>\n";
                 break;
             default:
-                $output .= "<input type=\"text\" id=\"$id\" name=\"$name\"$attributes />\n";
+                $output .= "<input type=\"".$this->getInputType($question)."\" id=\"$id\" name=\"$name\"".
+                    $this->getInputAttributes($question).$attributes." />\n";
         }
         return $output."</div>\n";
+    }
+
+    // Return the type of a field, what the question is checked for in the cloud
+    public function getInputType($question) {
+        switch ($this->getValidation($question)) {
+            case "email":   return "email";
+            case "phone":   return "tel";
+            case "number":  return "number";
+            default:        return "text";
+        }
+    }
+
+    // Return what the browser can check and fill in by itself
+    public function getInputAttributes($question) {
+        $output = "";
+        // "inputmode" does not survive the filter of Yellow, the type of the field says enough
+        $validation = $this->getValidation($question);
+        if ($validation=="regex") {
+            $expression = $this->getExtraSetting($question, "validationRegex");
+            if (preg_match("#^/(.*)/[a-z]*$#s", $expression, $matches)) $expression = $matches[1];
+            if (!is_string_empty($expression)) {
+                $output .= " pattern=\"".htmlspecialchars($expression)."\"";
+            }
+        }
+        $autocomplete = trim(strval($question["name"]));
+        if (!is_string_empty($autocomplete) && preg_match("/^[\w\- ]+$/", $autocomplete)) {
+            $output .= " autocomplete=\"".htmlspecialchars($autocomplete)."\"";
+        }
+        return $output;
+    }
+
+    // Return how a question is checked, empty when it is not
+    public function getValidation($question) {
+        return strtoloweru(strval($this->getExtraSetting($question, "validationType")));
+    }
+
+    // Return a setting a question carries beside its type
+    public function getExtraSetting($question, $key) {
+        $extra = isset($question["extraSettings"]) ? $question["extraSettings"] : array();
+        return is_array($extra) && isset($extra[$key]) ? $extra[$key] : "";
     }
 
     // Return error message for authors
