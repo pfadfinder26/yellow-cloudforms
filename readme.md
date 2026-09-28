@@ -1,4 +1,4 @@
-# Cloudforms 0.1.2
+# Cloudforms 0.1.3
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -29,6 +29,9 @@ without JavaScript. A request from another website is refused, and a field that 
 catches the simplest robots. Afterwards the page it was sent from is shown again, at the same
 address as before: what the cloud answered travels in a cookie that lives a minute and is cleared
 when the page says it.
+
+A list of answers that are all short carries a class of its own, `cloudform-options-short`, so a
+theme can put "yes" and "no" in one line.
 
 **Questions:** short and long text, a date, a time, a date with time, a choice from a list, several
 choices and one choice out of several become the fields you would expect. What a short answer is

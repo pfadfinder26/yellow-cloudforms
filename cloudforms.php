@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.1.2";
+    const VERSION = "0.1.3";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -218,7 +218,13 @@ class YellowCloudforms {
             case "multiple":
             case "multiple_unique":
                 $unique = $question["type"]=="multiple_unique";
-                $output .= "<span class=\"cloudform-options\" role=\"group\" aria-labelledby=\"$id-label\">\n";
+                $lengthMax = 0;
+                foreach ($question["options"] as $option) {
+                    $lengthMax = max($lengthMax, strlenu($option["text"]));
+                }
+                // answers as short as "yes" and "no" fit in one line, the theme decides how
+                $class = "cloudform-options".($lengthMax<=15 ? " cloudform-options-short" : "");
+                $output .= "<span class=\"".$class."\" role=\"group\" aria-labelledby=\"$id-label\">\n";
                 foreach ($question["options"] as $number=>$option) {
                     $output .= "<label><input type=\"".($unique ? "radio" : "checkbox")."\"".
                         " name=\"$name".($unique ? "" : "[]")."\" value=\"".htmlspecialchars($option["id"])."\"".

@@ -1,4 +1,4 @@
-# Cloudforms 0.1.2
+# Cloudforms 0.1.3
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -29,6 +29,9 @@ Das kommt ohne JavaScript aus. Eine Anfrage von einer anderen Website wird abgel
 das niemand sieht, fängt die einfachsten Robots ab. Danach wird die Seite erneut gezeigt, von der es kam,
 unter derselben Adresse wie vorher: was die Cloud geantwortet hat, reist in einem Cookie, das eine
 Minute lebt und gelöscht wird, sobald die Seite es gesagt hat.
+
+Eine Liste, deren Antworten alle kurz sind, trägt eine eigene Klasse, `cloudform-options-short`,
+ein Theme kann „Ja“ und „Nein“ also in eine Zeile setzen.
 
 **Fragen:** kurzer und langer Text, Datum, Uhrzeit, Datum mit Uhrzeit, Auswahl aus einer Liste,
 mehrere Antworten und eine Antwort aus mehreren werden zu den Feldern, die man erwartet. Wogegen
