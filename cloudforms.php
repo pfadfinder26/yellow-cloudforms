@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.1.4";
+    const VERSION = "0.2.0";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -16,6 +16,7 @@ class YellowCloudforms {
         $this->yellow->system->setDefault("cloudformsLabelFailed", "Sorry, your answer could not be sent.");
         $this->yellow->system->setDefault("cloudformsLabelRequired", "required");
         $this->yellow->system->setDefault("cloudformsLabelOpen", "Open form in the cloud");
+        $this->yellow->system->setDefault("cloudformsLabelClosed", "This form does not take answers at the moment.");
     }
 
     // Handle request, an answer is sent to the cloud and the page is shown again
@@ -153,11 +154,20 @@ class YellowCloudforms {
         }
         $output = "<div class=\"cloudform\">\n";
         if ($status=="done" || $status=="failed") {
+            $message = $this->yellow->system->get($status=="done" ?
+                "cloudformsLabelDone" : "cloudformsLabelFailed");
+            if ($status=="done" && !is_string_empty(strval($form["submissionMessage"]))) {
+                $message = strval($form["submissionMessage"]);
+            }
             $output .= "<p class=\"cloudform-status cloudform-".htmlspecialchars($status)."\">".
-                htmlspecialchars($this->yellow->system->get($status=="done" ?
-                    "cloudformsLabelDone" : "cloudformsLabelFailed"))."</p>\n";
+                nl2br(htmlspecialchars($message))."</p>\n";
         }
-        if ($status!="done") {
+        $closed = isset($form["canSubmit"]) && !$form["canSubmit"];
+        if ($status!="done" && $closed) {
+            $output .= "<p class=\"cloudform-status cloudform-closed\">".
+                htmlspecialchars($this->yellow->system->get("cloudformsLabelClosed"))."</p>\n";
+        }
+        if ($status!="done" && !$closed) {
             $output .= "<form class=\"cloudform-fields\" method=\"post\" action=\"".
                 htmlspecialchars($page->getLocation(true))."\">\n";
             $output .= "<input type=\"hidden\" name=\"cloudform\" value=\"".htmlspecialchars($hash)."\" />\n";
@@ -165,6 +175,10 @@ class YellowCloudforms {
                 " name=\"cloudform-website\" tabindex=\"-1\" autocomplete=\"off\" /></label></p>\n";
             if (!is_string_empty($form["title"])) {
                 $output .= "<h3>".htmlspecialchars($form["title"])."</h3>\n";
+            }
+            if (!is_string_empty(strval($form["description"]))) {
+                $output .= "<p class=\"cloudform-intro\">".
+                    nl2br(htmlspecialchars(strval($form["description"])))."</p>\n";
             }
             foreach ($form["questions"] as $question) $output .= $this->getQuestionHtml($question);
             // the way to the form in the cloud stands beside the button that sends this one

@@ -1,4 +1,4 @@
-# Cloudforms 0.1.4
+# Cloudforms 0.2.0
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -42,8 +42,19 @@ zum automatischen Ausfüllen, wird auch der weitergegeben. Alles
 andere wird eine Zeile Text. Ein Datei-Upload wird nicht angeboten, ein Formular damit öffnet man
 besser in der Cloud, der Link neben dem Knopf zum Abschicken tut das.
 
+**Was das Formular sagt:** Titel und Beschreibung des Formulars stehen über den Feldern, die
+Beschreibung einer einzelnen Frage über deren Feld. Ein Formular, das geschlossen, abgelaufen oder
+voll ist, zeigt keine Felder, nur einen Hinweis und den Link in die Cloud. Hat ein Formular eine
+eigene Nachricht für danach, steht sie anstelle des üblichen Dankes.
+
+**Bestätigung per E-Mail:** Nextcloud Forms kann eine schicken, „Bestätigungsmail“ in den
+Einstellungen des Formulars, zusammen mit der Frage, deren Antwort die Adresse enthält. Dafür ist
+hier nichts nötig: die Antworten sind dieselben, die die Cloud sonst bekommen hätte, sie verschickt
+ihre Mail also wie gewohnt. Die Frage nach der Adresse macht man am besten zur Pflichtfrage, die als
+Adresse geprüft wird.
+
 **Beschriftungen:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
-`CloudformsLabelRequired` und `CloudformsLabelOpen` sagen, was das Formular sagt, in der Sprache
+`CloudformsLabelRequired`, `CloudformsLabelClosed` und `CloudformsLabelOpen` sagen, was das Formular sagt, in der Sprache
 der Website.
 
 **Drucken:** das Formular ist schlichtes HTML, `.cloudform`, darin `.cloudform-question`,

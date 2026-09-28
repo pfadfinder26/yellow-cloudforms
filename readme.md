@@ -1,4 +1,4 @@
-# Cloudforms 0.1.4
+# Cloudforms 0.2.0
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -42,8 +42,18 @@ by itself passes that on as well. Anything else becomes a
 line of text. A file upload is not offered, a form with one is better opened in the cloud, the link
 beside the button that sends the form does that.
 
+**What the form says:** the title and the description of the form stand above the fields, and the
+description of a single question above that field. A form that is closed, expired or full shows no
+fields, only a note and the link into the cloud. When a form has a message of its own for afterwards
+it is shown instead of the usual thanks.
+
+**A confirmation by email:** Nextcloud Forms can send one, "Confirmation email" in the settings of
+the form, together with the question whose answer holds the address. Nothing is needed here for
+that: the answers are the ones the cloud would have received anyway, so the cloud sends its email as
+usual. The question for the address is best made a mandatory one that is checked as an address.
+
 **Labels:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
-`CloudformsLabelRequired` and `CloudformsLabelOpen` say what the form says, in the language of the
+`CloudformsLabelRequired`, `CloudformsLabelClosed` and `CloudformsLabelOpen` say what the form says, in the language of the
 website.
 
 **Printing:** the form is plain HTML, `.cloudform`, with `.cloudform-question`, `.cloudform-label`
