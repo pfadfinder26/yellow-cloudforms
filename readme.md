@@ -1,4 +1,4 @@
-# Cloudforms 0.2.0
+# Cloudforms 0.2.1
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -39,8 +39,9 @@ checked for in the cloud is carried along: an address becomes an email field, a 
 field, a phone number a phone field, an expression of its own the pattern of the field, so the
 browser says what is wrong before anything is sent. A question that carries a name for filling in
 by itself passes that on as well. Anything else becomes a
-line of text. A file upload is not offered, a form with one is better opened in the cloud, the link
-beside the button that sends the form does that.
+line of text. A question that wants a file says so and points into the cloud, because the file belongs to the
+cloud and never to this website. When such a question is mandatory the form is not shown at all,
+only the link, since an answer without the file would be refused.
 
 **What the form says:** the title and the description of the form stand above the fields, and the
 description of a single question above that field. A form that is closed, expired or full shows no

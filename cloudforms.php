@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.2.0";
+    const VERSION = "0.2.1";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -17,6 +17,7 @@ class YellowCloudforms {
         $this->yellow->system->setDefault("cloudformsLabelRequired", "required");
         $this->yellow->system->setDefault("cloudformsLabelOpen", "Open form in the cloud");
         $this->yellow->system->setDefault("cloudformsLabelClosed", "This form does not take answers at the moment.");
+        $this->yellow->system->setDefault("cloudformsLabelFile", "This file is uploaded in the form in the cloud.");
     }
 
     // Handle request, an answer is sent to the cloud and the page is shown again
@@ -163,6 +164,9 @@ class YellowCloudforms {
                 nl2br(htmlspecialchars($message))."</p>\n";
         }
         $closed = isset($form["canSubmit"]) && !$form["canSubmit"];
+        foreach ($form["questions"] as $question) {
+            if ($question["type"]=="file" && !empty($question["isRequired"])) $closed = true;
+        }
         if ($status!="done" && $closed) {
             $output .= "<p class=\"cloudform-status cloudform-closed\">".
                 htmlspecialchars($this->yellow->system->get("cloudformsLabelClosed"))."</p>\n";
@@ -254,6 +258,11 @@ class YellowCloudforms {
                         htmlspecialchars($option["text"])."</label>\n";
                 }
                 $output .= "</span>\n";
+                break;
+            case "file":
+                // the cloud takes the file itself, this website never sees it
+                $output .= "<span class=\"cloudform-file\">".
+                    htmlspecialchars($this->yellow->system->get("cloudformsLabelFile"))."</span>\n";
                 break;
             default:
                 $output .= "<input type=\"".$this->getInputType($question)."\" id=\"$id\" name=\"$name\"".

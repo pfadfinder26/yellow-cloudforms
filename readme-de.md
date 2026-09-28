@@ -1,4 +1,4 @@
-# Cloudforms 0.2.0
+# Cloudforms 0.2.1
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -39,8 +39,9 @@ eine kurze Antwort in der Cloud geprüft wird, kommt mit: aus einer Adresse wird
 aus einer Zahl ein Zahlenfeld, aus einer Telefonnummer ein Telefonfeld, aus einem eigenen Ausdruck
 das Muster des Feldes, der Browser sagt also vorher, was nicht stimmt. Trägt eine Frage einen Namen
 zum automatischen Ausfüllen, wird auch der weitergegeben. Alles
-andere wird eine Zeile Text. Ein Datei-Upload wird nicht angeboten, ein Formular damit öffnet man
-besser in der Cloud, der Link neben dem Knopf zum Abschicken tut das.
+andere wird eine Zeile Text. Eine Frage, die eine Datei will, sagt das und verweist in die Cloud, denn die Datei gehört in die
+Cloud und nie auf diese Website. Ist so eine Frage eine Pflichtfrage, wird das Formular gar nicht
+gezeigt, nur der Link, weil eine Antwort ohne die Datei abgelehnt würde.
 
 **Was das Formular sagt:** Titel und Beschreibung des Formulars stehen über den Feldern, die
 Beschreibung einer einzelnen Frage über deren Feld. Ein Formular, das geschlossen, abgelaufen oder
