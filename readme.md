@@ -1,4 +1,4 @@
-# Cloudforms 0.2.1
+# Cloudforms 0.2.2
 
 Embed a form from a Nextcloud. Developed by Liam Perlaki.
 
@@ -39,8 +39,8 @@ checked for in the cloud is carried along: an address becomes an email field, a 
 field, a phone number a phone field, an expression of its own the pattern of the field, so the
 browser says what is wrong before anything is sent. A question that carries a name for filling in
 by itself passes that on as well. Anything else becomes a
-line of text. A question that wants a file says so and points into the cloud, because the file belongs to the
-cloud and never to this website. When such a question is mandatory the form is not shown at all,
+line of text. A question that wants a file says what to do with it instead, `CloudformsLabelFile`, printing it or
+sending it by email, because the file belongs to the cloud and never to this website. When such a question is mandatory the form is not shown at all,
 only the link, since an answer without the file would be refused.
 
 **What the form says:** the title and the description of the form stand above the fields, and the
@@ -53,8 +53,12 @@ the form, together with the question whose answer holds the address. Nothing is 
 that: the answers are the ones the cloud would have received anyway, so the cloud sends its email as
 usual. The question for the address is best made a mandatory one that is checked as an address.
 
-**Labels:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
-`CloudformsLabelRequired`, `CloudformsLabelClosed` and `CloudformsLabelOpen` say what the form says, in the language of the
+After an answer has arrived a button offers to fill the form in again, for the second child of a
+family.
+
+**Labels:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelAgain`,
+`CloudformsLabelFailed`, `CloudformsLabelRequired`, `CloudformsLabelClosed`, `CloudformsLabelFile`
+and `CloudformsLabelOpen` say what the form says, in the language of the
 website.
 
 **Printing:** the form is plain HTML, `.cloudform`, with `.cloudform-question`, `.cloudform-label`

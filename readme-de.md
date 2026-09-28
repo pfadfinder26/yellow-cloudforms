@@ -1,4 +1,4 @@
-# Cloudforms 0.2.1
+# Cloudforms 0.2.2
 
 Ein Formular aus einer Nextcloud einbetten. Entwickelt von Liam Perlaki.
 
@@ -39,8 +39,8 @@ eine kurze Antwort in der Cloud geprüft wird, kommt mit: aus einer Adresse wird
 aus einer Zahl ein Zahlenfeld, aus einer Telefonnummer ein Telefonfeld, aus einem eigenen Ausdruck
 das Muster des Feldes, der Browser sagt also vorher, was nicht stimmt. Trägt eine Frage einen Namen
 zum automatischen Ausfüllen, wird auch der weitergegeben. Alles
-andere wird eine Zeile Text. Eine Frage, die eine Datei will, sagt das und verweist in die Cloud, denn die Datei gehört in die
-Cloud und nie auf diese Website. Ist so eine Frage eine Pflichtfrage, wird das Formular gar nicht
+andere wird eine Zeile Text. Eine Frage, die eine Datei will, sagt stattdessen, was damit zu tun ist, `CloudformsLabelFile`,
+ausdrucken oder per Mail schicken, denn die Datei gehört in die Cloud und nie auf diese Website. Ist so eine Frage eine Pflichtfrage, wird das Formular gar nicht
 gezeigt, nur der Link, weil eine Antwort ohne die Datei abgelehnt würde.
 
 **Was das Formular sagt:** Titel und Beschreibung des Formulars stehen über den Feldern, die
@@ -54,8 +54,12 @@ hier nichts nötig: die Antworten sind dieselben, die die Cloud sonst bekommen h
 ihre Mail also wie gewohnt. Die Frage nach der Adresse macht man am besten zur Pflichtfrage, die als
 Adresse geprüft wird.
 
-**Beschriftungen:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelFailed`,
-`CloudformsLabelRequired`, `CloudformsLabelClosed` und `CloudformsLabelOpen` sagen, was das Formular sagt, in der Sprache
+Ist eine Antwort angekommen, bietet ein Knopf an, das Formular noch einmal auszufüllen, für das
+zweite Kind einer Familie.
+
+**Beschriftungen:** `CloudformsLabelSubmit`, `CloudformsLabelDone`, `CloudformsLabelAgain`,
+`CloudformsLabelFailed`, `CloudformsLabelRequired`, `CloudformsLabelClosed`, `CloudformsLabelFile`
+und `CloudformsLabelOpen` sagen, was das Formular sagt, in der Sprache
 der Website.
 
 **Drucken:** das Formular ist schlichtes HTML, `.cloudform`, darin `.cloudform-question`,

@@ -3,7 +3,7 @@
 // Based on Datenstrom Yellow, https://datenstrom.se/yellow/
 
 class YellowCloudforms {
-    const VERSION = "0.2.1";
+    const VERSION = "0.2.2";
     public $yellow;         // access to API
 
     // Handle initialisation
@@ -17,7 +17,9 @@ class YellowCloudforms {
         $this->yellow->system->setDefault("cloudformsLabelRequired", "required");
         $this->yellow->system->setDefault("cloudformsLabelOpen", "Open form in the cloud");
         $this->yellow->system->setDefault("cloudformsLabelClosed", "This form does not take answers at the moment.");
-        $this->yellow->system->setDefault("cloudformsLabelFile", "This file is uploaded in the form in the cloud.");
+        $this->yellow->system->setDefault("cloudformsLabelFile",
+            "Print this sheet and bring it along, or send it to us by email.");
+        $this->yellow->system->setDefault("cloudformsLabelAgain", "Fill in the form again");
     }
 
     // Handle request, an answer is sent to the cloud and the page is shown again
@@ -166,6 +168,11 @@ class YellowCloudforms {
         $closed = isset($form["canSubmit"]) && !$form["canSubmit"];
         foreach ($form["questions"] as $question) {
             if ($question["type"]=="file" && !empty($question["isRequired"])) $closed = true;
+        }
+        if ($status=="done") {
+            $output .= "<p class=\"cloudform-again\"><a class=\"button\" href=\"".
+                htmlspecialchars($page->getLocation(true))."\">".
+                htmlspecialchars($this->yellow->system->get("cloudformsLabelAgain"))."</a></p>\n";
         }
         if ($status!="done" && $closed) {
             $output .= "<p class=\"cloudform-status cloudform-closed\">".
